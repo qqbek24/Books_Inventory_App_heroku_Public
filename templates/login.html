@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Login</title>
+
+    <link href='https://fonts.googleapis.com/css?family=Alegreya SC' rel='stylesheet'>
+    <link href="../static/css/bootstrap.css" rel="stylesheet">
+    <link href="../static/css/login2.css" rel="stylesheet">
+    <link rel="shortcut icon" href="../static/css/Icons8-Windows-8-Printing-Book.ico" type="image/x-icon" />
+    <style type="text/css">
+    body,td,th {
+	color: #FFF;
+}
+    </style>
+</head>
+
+  <body class="text-center">
+    <form class="form-signin" action="{{url_for('log')}}" method="POST">
+      <img class="mb-4" src="../static/css/Bookslogo1.png" alt="" width="175" height="175">
+      <h1 class="h3 mb-3 font-weight-normal" style="color:black">Books Inventory</h1>
+      <div>
+            {% with messages = get_flashed_messages()%}
+                {% if messages%}
+                    {% for message in messages %}
+                        <div class="alert alert-info alert-dismissible">
+                            <!-- <a href="{{url_for('logout')}}" class="close" data-dismiss="alert" aria-label="close">&times;</a> -->
+                            <strong>{{message}}</strong>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            {% block body %}{% endblock %}
+      </div>
+      <label for="inputUsername" class="sr-only">Username</label>
+      <input type="text" id="inputUsername" class="form-control" placeholder="Username" name="username" required autofocus>
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required><br>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button><br>
+      <h5 style="color:black">Don't have an account ? </h><a href="{{url_for('registered')}}">Register here</a>
+	</form>
+  </body>
+</html>
+
